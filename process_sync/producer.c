@@ -8,7 +8,7 @@
 int main()
 {
     int         fd,flags;
-    off_t       length;
+    off_t       length = sizeof(struct shm_struct);
     void        *ptr;
     struct shm_struct  *pshm;
     pthread_mutexattr_t attr;
@@ -20,6 +20,7 @@ int main()
         fprintf(stderr, "create shm object error, errno %d\n", errno);
         return -1;
     }
+    ftruncate(fd, length);
     ptr = mmap(NULL, sizeof(struct shm_struct), PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
     if(MAP_FAILED == ptr)
     {

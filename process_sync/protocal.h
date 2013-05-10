@@ -3,8 +3,7 @@
 
 #include <pthread.h>
 #define MAXITEMS 1000000
-const char *OBJNAME="/tmp/myshm";
-
+#define OBJNAME "shmfile"
 struct shm_struct{
     pthread_mutex_t mutex;
     int nput,nvalue;
